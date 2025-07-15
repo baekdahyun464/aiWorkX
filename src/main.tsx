@@ -1,16 +1,20 @@
-import { StrictMode } from 'react';
+import { StrictMode, startTransition } from 'react';
 import { createRoot } from 'react-dom/client';
-import './styles/global.scss';
-import Router from '@/router.tsx';
 import { BrowserRouter } from 'react-router';
+import Router from '@/router.tsx';
 import ModeInitializer from './hooks/mode-initializar';
+import './styles/global.scss';
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <BrowserRouter>
-      <ModeInitializer>
-        <Router />
-      </ModeInitializer>
-    </BrowserRouter>
-  </StrictMode>,
-);
+const root = createRoot(document.getElementById('root')!);
+
+startTransition(() => {
+  root.render(
+    <StrictMode>
+      <BrowserRouter>
+        <ModeInitializer>
+          <Router />
+        </ModeInitializer>
+      </BrowserRouter>
+    </StrictMode>
+  );
+});

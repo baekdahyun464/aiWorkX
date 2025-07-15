@@ -1,17 +1,35 @@
-import DefaultLayout from '@/components/layout/default-layout.tsx';
-import DashboardPage from '@/pages/dashboard/dashboard-page.tsx';
-import LoginPage from '@/pages/login/login-page.tsx';
-import SampleMenuPage from '@/pages/sample-menu/sample-menu-page.tsx';
+import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router';
+import LoadingSpinner from '@/components/loading-spinner';
+
+// Lazy load components for code splitting
+const DefaultLayout = lazy(() => import('@/components/layout/default-layout.tsx'));
+const DashboardPage = lazy(() => import('@/pages/dashboard/dashboard-page.tsx'));
+const LoginPage = lazy(() => import('@/pages/login/login-page.tsx'));
+const SampleMenuPage = lazy(() => import('@/pages/sample-menu/sample-menu-page.tsx'));
 
 export default function Router() {
   return (
-    <Routes>
-      <Route path="/" element={<DefaultLayout />}>
-        <Route index element={<DashboardPage />} />
-        <Route path="/sample-menu" element={<SampleMenuPage />} />
-      </Route>
-      <Route path="/login" element={<LoginPage />} />
-    </Routes>
+    <Suspense fallback={<LoadingSpinner />}>
+      <Routes>
+        <Route path="/" element={<DefaultLayout />}>
+          <Route index element={
+            <Suspense fallback={<LoadingSpinner text="Loading Dashboard..." />}>
+              <DashboardPage />
+            </Suspense>
+          } />
+          <Route path="/sample-menu" element={
+            <Suspense fallback={<LoadingSpinner text="Loading Sample Menu..." />}>
+              <SampleMenuPage />
+            </Suspense>
+          } />
+        </Route>
+        <Route path="/login" element={
+          <Suspense fallback={<LoadingSpinner text="Loading Login..." />}>
+            <LoginPage />
+          </Suspense>
+        } />
+      </Routes>
+    </Suspense>
   );
 }
