@@ -1,48 +1,34 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { cardListData } from './data';
 import Card from './card';
-import { cardListData } from '../testLoading.ts';
-
-const ITEMS_PER_PAGE = 4;
+import Paging from './layout/paging';
 
 export default function CardPaging() {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(cardListData.length / ITEMS_PER_PAGE);
+  const itemsPerPage = 4;
+  const totalItems = cardListData.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      setCurrentPage(prev => prev - 1);
-    }
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = cardListData.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
   };
-
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(prev => prev + 1);
-    }
-  };
-
-  const currentData = cardListData.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE,
-  );
 
   return (
-    <div>
-      {/* 페이징 */}
-      {totalPages > 1 && (
-        <div className="pagination-arrow">
-          <button onClick={handlePrev} disabled={currentPage === 1}></button>
-          <button
-            onClick={handleNext}
-            disabled={currentPage === totalPages}
-          ></button>
-        </div>
-      )}
-
-      <ul className="card-wrap">
-        {currentData.map(item => (
+    <div className="card-paging">
+      <div className="card-list">
+        {currentItems.map(item => (
           <Card key={item.id} data={item} />
         ))}
-      </ul>
+      </div>
+      <Paging
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }

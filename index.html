@@ -4,7 +4,23 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AI WorkX Test Platform Frontend" />
     <title>Vite + React + TS</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/src/styles/global.scss" as="style" />
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    
+    <!-- Font optimization -->
+    <link rel="preload" href="/src/assets/SamsungOne-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/src/assets/SamsungOne-700.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    
+    <!-- Performance meta tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#000000" />
   </head>
   <body>
     <div id="root"></div>
