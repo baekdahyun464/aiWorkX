@@ -6,12 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:report": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "ag-grid-community": "^33.3.2",
-    "ag-grid-react": "^33.3.2",
     "react": "^19.1.0",
     "react-countup": "^6.5.3",
     "react-dom": "^19.1.0",
@@ -31,6 +30,9 @@
     "sass-embedded": "^1.89.2",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",
-    "vite-plugin-compression": "^0.6.1"
+    "vite-plugin-compression": "^0.6.1",
+    "vite-plugin-imagemin": "^0.9.1",
+    "vite-plugin-purgecss": "^0.4.3",
+    "rollup-plugin-visualizer": "^5.12.0"
   }
 }
