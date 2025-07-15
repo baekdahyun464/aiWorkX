@@ -1,0 +1,152 @@
+//radio
+input[type='radio'] {
+  & + label {
+    cursor: pointer;
+    &::before {
+      content: '';
+      @include svg-size($width: 18px, $height: 18px);
+      @include display(inline-block);
+      @include bg-img(
+        $url: --chk-radio-icon,
+        $size: 354px 111px,
+        $position: -20px -20px
+      );
+      @include align(valign, sub);
+      margin-right: 5px;
+      border-radius: 30px;
+    }
+    &:hover::before {
+      @include bg-img(
+        $url: --chk-radio-icon,
+        $size: 354px 111px,
+        $position: -106px -20px
+      );
+      transition: none;
+    }
+  }
+
+  &:checked + label {
+    &::before {
+      content: '';
+      transition: all, 0.05s;
+      @include bg-img(
+        $url: --chk-radio-icon,
+        $size: 354px 111px,
+        $position: -192px -20px
+      );
+    }
+  }
+  &:disabled + label {
+    &::before {
+      @include bg-img(
+        $url: --chk-radio-icon,
+        $size: 354px 111px,
+        $position: -278px -20px
+      );
+    }
+  }
+}
+
+// checkbox
+input[type='checkbox'] {
+  & + label {
+    cursor: pointer;
+    &::before {
+      content: '';
+      @include svg-size($width: 18px, $height: 18px);
+      @include display(inline-block);
+      @include bg-img(
+        $url: --chk-radio-icon,
+        $size: 354px 111px,
+        $position: -20px -70px
+      );
+      @include align(valign, sub);
+      margin-right: 5px;
+      border-radius: 3px;
+    }
+    &:hover::before {
+      @include bg-img(
+        $url: --chk-radio-icon,
+        $size: 354px 111px,
+        $position: -106px -70px
+      );
+      transition: none;
+    }
+  }
+
+  &:checked + label {
+    &::before {
+      content: '';
+      transition: all, 0.05s;
+      @include bg-img(
+        $url: --chk-radio-icon,
+        $size: 354px 111px,
+        $position: -192px -70px
+      );
+    }
+  }
+  &:disabled + label {
+    &::before {
+      @include bg-img(
+        $url: --chk-radio-icon,
+        $size: 354px 111px,
+        $position: -278px -70px
+      );
+    }
+  }
+}
+
+// toggle btn
+input[type='checkbox'] + label.toggle {
+  @include display(inline-block);
+  @include height(19px);
+  line-height: 19px;
+  @include fontsize(sm);
+  @include borderRadius(30px);
+  color: $disabled-text;
+  background-color: $disabled;
+  padding: 0 8px 0 23px;
+  position: relative;
+  transition: all 0.2s;
+
+  &::before {
+    content: '';
+    @include svg-size(16px, 16px);
+    @include borderRadius(30px);
+    @include bg-img(
+      $url: --bg-img-disabled,
+      $size: 454px auto,
+      $position: -10px -29px
+    );
+    background-color: $disabled-text;
+    position: absolute;
+    left: 1px;
+    top: 1.5px;
+    margin: 0;
+  }
+  &.chip {
+    & span {
+      display: inline-block;
+      width: 44px;
+    }
+
+    &::before {
+      background-image: none !important;
+    }
+  }
+}
+
+input[type='checkbox']:checked + label.toggle {
+  color: $bg;
+  background-color: $accent;
+  padding: 0 23px 0 8px;
+  transition: all 0.1s;
+  &::before {
+    content: '';
+    @include bg-img($size: 454px auto, $position: -50.5px -29.5px);
+    background-image: url('../assets/icon-accent.svg');
+    background-color: $bg;
+    left: unset;
+    right: 1.5px;
+  }
+}

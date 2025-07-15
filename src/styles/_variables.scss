@@ -1,0 +1,95 @@
+@use 'sass:map';
+@use 'sass:string';
+
+//Darkmode (App.tsx 에서 다크모드 변경시 add/remove되는 최상위 클래스명)
+$darkMode: '.dark-mode';
+@import './colors.css';
+
+// important
+$imt: string.unquote('!important');
+
+//===== Font
+$fontDefault: 'samsungone', 'Noto Sans KR', sans-serif;
+
+//===== Radius
+$rounding: var(--rounding) !default;
+
+/****************************************/
+/*	Color Variables
+/****************************************/
+
+$bg: var(--background) !default;
+$con-bg: var(--container-background) !default;
+$default: var(--default) !default;
+$text: var(--text) !default;
+$text-01: var(--text-01) !default;
+$gray: var(--gray) !default;
+$top-btn: var(--top-btn) !default;
+$line: var(--line) !default;
+$border: var(--border) !default;
+$caption: var(--caption) !default;
+$disabled: var(--disabled) !default;
+$disabled-text: var(--disabled-text) !default;
+$primary: var(--primary) !default;
+$primary-focus: var(--primary-focus) !default;
+$accent: var(--accent) !default;
+$secondary: var(--secondary) !default;
+$error: var(--error) !default;
+$warning: var(--warning) !default;
+$success: var(--success) !default;
+$orange: var(--orange) !default;
+$white: var(--white) !default;
+$rounding: var(--rounding) !default;
+$btn-focus: var(--btn-focus) !default;
+$btn-focus01: var(--btn-focus01) !default;
+$menu-focus: var(--menu-focus) !default;
+$bg-img: var(--bg-img) !default;
+$bg-pri: var(--bg-pri) !default;
+$bg-img-op: var(--bg-img-op) !default;
+$bg-img-white: var(--bg-img-white) !default;
+$bg-img-disabled: var(--bg-img-disabled) !default;
+$chk-radio-icon: var(--chk-radio-icon) !default;
+
+/****************************************/
+/*	Color Class 활용
+/****************************************/
+//===== $colors (2024.09.13)
+$colors: () !default;
+
+$colors: map.merge(
+  $colors,
+  (
+    //figma design
+    'bg': $bg,
+    'con-bg': $con-bg,
+    'default': $default,
+    'text': $text,
+    'text-01': $text-01,
+    'gray': $gray,
+    'top-btn': $top-btn,
+    'line': $line,
+    'border': $border,
+    'caption': $caption,
+    'disabled': $disabled,
+    'disabled-text': $disabled-text,
+    'primary': $primary,
+    'primary-focus': $primary-focus,
+    'accent': $accent,
+    'secondary': $secondary,
+    'error': $error,
+    'warning': $warning,
+    'success': $success,
+    'orange': $orange,
+    'white': $white,
+    'rounding': $rounding,
+    'btn-focus': $btn-focus,
+    'btn-focus01': $btn-focus01,
+    'menu-focus': $menu-focus,
+    'bg-img': $bg-img,
+    'bg-pri': $bg-pri,
+    'bg-img-op': $bg-img-op,
+    'bg-img-white': $bg-img-white,
+    'bg-img-disabled': $bg-img-disabled,
+    'chk-radio-icon': $chk-radio-icon
+  )
+);

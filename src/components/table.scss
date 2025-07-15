@@ -1,0 +1,26 @@
+.table {
+  & th,
+  & td {
+    border: 1px solid $line;
+    @include align(text, left);
+    @include height(33px);
+    padding: 4px 6px;
+    color: $text;
+    line-height: 1;
+  }
+  & thead {
+    border-top: 2px solid $default;
+    tr {
+      th {
+        background: $con-bg;
+      }
+    }
+  }
+  & tbody {
+    tr {
+      td {
+        background-color: $bg;
+      }
+    }
+  }
+}

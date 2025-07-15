@@ -1,0 +1,73 @@
+.swiper {
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 10px;
+  & > div.swiper-wrapper {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(calc(25% - 15px), 1fr));
+    gap: 0 20px;
+    grid-auto-flow: column;
+    & .swiper-slide {
+      width: unset !important;
+      margin: 0 !important;
+
+      & .card-wrap > li {
+        max-width: unset;
+      }
+    }
+  }
+  // 상단 버튼
+  /* & [class*='swiper-button'] {
+    position: absolute;
+    top: -32px;
+    right: 0;
+    border: 1px solid $gray;
+    @include svg-size(26px, 26px);
+    border-radius: 4px;
+    padding: 6px;
+    @include align(valign, top);
+    left: unset;
+    opacity: 1;
+    margin: 0;
+    z-index: 1;
+    display: inline-block;
+    &::after {
+      content: '';
+      display: inline-block;
+      @include svg-size(14px, 14px);
+      @include bg-img(
+        $url: --bg-img-op,
+        $size: 454px auto $imt,
+        $position: -152px -14px $imt
+      );
+      transition: all, 0.2s;
+    }
+    &.swiper-button-prev {
+      right: 30px;
+      left: unset;
+      &::after {
+        @include bg-img(
+          $url: --bg-img-op,
+          $size: 454px auto,
+          $position: -133px -14px $imt
+        );
+      }
+    }
+    &[class*='disabled'] {
+      background-color: $disabled;
+      border-color: $disabled;
+      &::after {
+        @include bg-img($url: --bg-img-disabled);
+      }
+    }
+  } */
+  & .swiper-pagination {
+    top: 197px;
+    @include borderRadius(10px);
+    background-color: $btn-focus01;
+    > span {
+      @include borderRadius(10px);
+      background-color: $border;
+    }
+  }
+}

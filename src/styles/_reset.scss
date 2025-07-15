@@ -1,0 +1,475 @@
+/****************************************/
+/*	RESET CSS
+/****************************************/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100vw;
+  overflow-x: auto; // 가로 스크롤 허용
+  overflow-y: hidden; // 세로 스크롤 방지
+  height: 100%;
+}
+
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+fieldset,
+img {
+  border: 0 none;
+}
+ol,
+ul,
+li {
+  list-style: none;
+}
+button {
+  border: 0 none;
+  cursor: pointer;
+}
+input,
+textarea,
+select {
+  background-color: transparent;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+input,
+textarea,
+select,
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+input[type='text'],
+input[type='password'],
+input[type='submit'],
+input[type='search'],
+input[type='tel'],
+input[type='email'] {
+  -webkit-appearance: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+}
+select::-ms-expand {
+  display: none;
+}
+
+a:active,
+a:hover {
+  text-decoration: none;
+}
+
+/*font-face*/
+@font-face {
+  font-family: 'SamsungOne';
+  src: url('../samsungone-webfont/SamsungOne-400.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SamsungOne';
+  src: url('../samsungone-webfont/SamsungOne-700.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SamsungOne';
+  src: url('../samsungone-webfont/SamsungSharpSans-Bold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+}
+
+/****************************************/
+/*	BASIC CSS
+/****************************************/
+/* FONT WEIGHT */
+.bold {
+  font-weight: bold;
+  font-weight: 700;
+}
+.font500 {
+  font-weight: 500;
+}
+
+/* DISPLAY */
+.block {
+  @include display(block !important);
+}
+.inBlock {
+  @include display(inline-block !important);
+}
+
+/* FLEX */
+.flex-box {
+  @include display(flex);
+  align-items: center;
+  flex-direction: row;
+  &.col {
+    flex-direction: column;
+  }
+  &.a-center {
+    align-items: center;
+  }
+  &.a-start {
+    align-items: start;
+  }
+  &.a-end {
+    align-items: end;
+  }
+  &.j-start {
+    justify-content: start;
+  }
+  &.j-center {
+    justify-content: center;
+  }
+  &.j-end {
+    justify-content: end;
+  }
+  &.j-between {
+    justify-content: space-between;
+  }
+}
+.flex-grow {
+  @include flex($grow: 1, $shrink: 1);
+}
+.flex-shrink {
+  @include flexgrow($grow: 0, $shrink: 0);
+}
+@for $i from 1 through 10 {
+  .flex#{$i} {
+    flex: #{$i};
+  }
+}
+@for $i from 1 through 10 {
+  .gap#{$i} {
+    gap: #{$i}px;
+  }
+}
+
+/* ALIGN */
+.txt-l {
+  @include align('text', left);
+}
+.txt-c {
+  @include align('text', center);
+}
+.txt-r {
+  @include align('text', right);
+}
+.vm {
+  @include align('valign', middle);
+}
+.vt {
+  @include align('valign', top);
+}
+.vb {
+  @include align('valign', bottom);
+}
+.a-start {
+  align-items: flex-start !important;
+}
+.a-center {
+  align-items: center !important;
+}
+.a-end {
+  align-items: flex-end !important;
+}
+
+/* SCROLL */
+.scrollY {
+  @include overflow(y, auto);
+}
+.scrollX {
+  @include overflow(x, auto);
+}
+
+/* Ellipsis */
+.ellipsis {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Colors : text-color, background-color */
+@each $color, $value in $colors {
+  //font color
+  .fc-#{$color} {
+    color: #{$value};
+  }
+  //background color
+  .bg-#{$color} {
+    background-color: #{$value};
+  }
+}
+
+/* Typography (M = medium / B = bold) */
+$typography: (
+  'M_24_34': (
+    'font-weight': 500,
+    'font-size': 24px,
+    'line-height': 34px,
+  ),
+  'M_28_38': (
+    'font-weight': 500,
+    'font-size': 28px,
+    'line-height': 38px,
+  ),
+  'M_30_42': (
+    'font-weight': 500,
+    'font-size': 30px,
+    'line-height': 42px,
+  ),
+  'M_32_44': (
+    'font-weight': 500,
+    'font-size': 32px,
+    'line-height': 44px,
+  ),
+  'M_36_46': (
+    'font-weight': 700,
+    'font-size': 36px,
+    'line-height': 46px,
+  ),
+  'M_36_50': (
+    'font-weight': 500,
+    'font-size': 36px,
+    'line-height': 50px,
+  ),
+  'M_46_56': (
+    'font-weight': 500,
+    'font-size': 46px,
+    'line-height': 56px,
+  ),
+  'B_20_28': (
+    'font-weight': 700,
+    'font-size': 20px,
+    'line-height': 28px,
+  ),
+  'B_24_34': (
+    'font-weight': 700,
+    'font-size': 24px,
+    'line-height': 34px,
+  ),
+  'B_28_38': (
+    'font-weight': 700,
+    'font-size': 28px,
+    'line-height': 38px,
+  ),
+  'B_30_42': (
+    'font-weight': 700,
+    'font-size': 30px,
+    'line-height': 42px,
+  ),
+  'B_36_46': (
+    'font-weight': 700,
+    'font-size': 36px,
+    'line-height': 46px,
+  ),
+);
+@each $name, $styles in $typography {
+  //typography
+  .typo-#{$name} {
+    @each $property, $value in $styles {
+      #{$property}: $value;
+    }
+  }
+}
+
+//===== className with number
+$classLength: 200; // set classLength(px)
+@for $i from 0 through $classLength {
+  //font-size
+  .fs-#{$i} {
+    font-size: #{$i} + 'px';
+  }
+  //line-height
+  .lh-#{$i} {
+    line-height: #{$i} + 'px';
+  }
+  //padding
+  .p-#{$i} {
+    padding: #{$i} + 'px' $imt;
+  }
+  .pt-#{$i} {
+    padding-top: #{$i} + 'px' $imt;
+  }
+  .pb-#{$i} {
+    padding-bottom: #{$i} + 'px' $imt;
+  }
+  .pl-#{$i} {
+    padding-left: #{$i} + 'px' $imt;
+  }
+  .pr-#{$i} {
+    padding-right: #{$i} + 'px' $imt;
+  }
+  .pv-#{$i} {
+    padding-top: #{$i} + 'px' $imt;
+    padding-bottom: #{$i} + 'px' $imt;
+  }
+  .ph-#{$i} {
+    padding-left: #{$i} + 'px' $imt;
+    padding-right: #{$i} + 'px' $imt;
+  }
+  //margin
+  .m-#{$i} {
+    margin: #{$i} + 'px' $imt;
+  }
+  .mt-#{$i} {
+    margin-top: #{$i} + 'px' $imt;
+  }
+  .mb-#{$i} {
+    margin-bottom: #{$i} + 'px' $imt;
+  }
+  .ml-#{$i} {
+    margin-left: #{$i} + 'px' $imt;
+  }
+  .mr-#{$i} {
+    margin-right: #{$i} + 'px' $imt;
+  }
+  .mv-#{$i} {
+    margin-top: #{$i} + 'px' $imt;
+    margin-bottom: #{$i} + 'px' $imt;
+  }
+  .mh-#{$i} {
+    margin-left: #{$i} + 'px' $imt;
+    margin-right: #{$i} + 'px' $imt;
+  }
+  //gap
+  @if $i < 10 {
+    .gap-0#{$i} {
+      gap: 0px + $i;
+    }
+  } @else {
+    .gap-#{$i} {
+      gap: 0px + $i;
+    }
+  }
+}
+$classPercent: 100; // set classPercent(%)
+@for $i from 1 through $classLength {
+  //width(%)
+  .w#{$i} {
+    width: #{$i} + '%';
+  }
+  //height(%)
+  .h#{$i} {
+    height: #{$i} + '%';
+  }
+}

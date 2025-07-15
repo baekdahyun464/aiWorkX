@@ -1,0 +1,59 @@
+.card-wrap {
+  @include flexbox($gap: 20px);
+  & li {
+    max-width: 25%;
+    @include flexbox($wrap: wrap);
+    @include flexgrow($grow: 1);
+    background: $bg;
+    border: 1px solid $line;
+    border-radius: 4px;
+    & a {
+      @include width();
+      padding: 12px;
+      & > p {
+        @include fontweight(700);
+        color: $text;
+      }
+      & figure {
+        width: 100%;
+
+        @include flexbox($al-items: center, $gap: 0 12px);
+        & figcaption {
+          & span:first-child {
+            @include fontweight(700);
+            @include fontsize(h6);
+            color: $success;
+            margin-right: 4px;
+          }
+          & span:last-child {
+            @include fontweight(700);
+            color: $gray;
+          }
+        }
+      }
+      & div {
+        @include width();
+        @include flexbox($gap: 6px, $j-content: flex-end);
+        @include align(text, right);
+        & p {
+          @include fontsize(sm);
+          color: $text-01;
+          &::before {
+            content: '';
+            display: inline-block;
+            @include svg-size(10px, 10px);
+            @include borderRadius();
+            @include align(valign, middle);
+            margin-right: 3.5px;
+          }
+          &:first-child::before {
+            background-color: $success;
+          }
+          &:last-child::before {
+            background-color: $gray;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+.css-b62m3t-container {
+  & > span {
+    z-index: 2;
+  }
+  & > div {
+    border: 1px solid $border;
+    background-color: $bg;
+    min-height: unset;
+
+    & .css-hlgwow .css-1dimb5e-singleValue {
+      margin: 0;
+      color: $text-01;
+    }
+
+    & .css-1wy0on6 {
+      & > span {
+        display: none;
+      }
+      // select arrow icon
+      & > div {
+        margin-right: 6px;
+        @include svg-size(14px, 14px);
+        @include bg-img(
+          $url: --bg-img-op,
+          $size: 454px auto,
+          $position: -111px -11px
+        );
+        & > svg {
+          display: none;
+        }
+      }
+    }
+    &:hover {
+      border-color: $border;
+      box-shadow: none;
+      cursor: pointer;
+    }
+  }
+  // select 클릭 전
+  & > .css-13cymwt-control {
+    & .css-hlgwow {
+      padding: 4px 6px;
+      & .css-1dimb5e-singleValue {
+        color: $text-01;
+      }
+      & .css-19bb58m {
+        margin: 0;
+        padding: 0;
+      }
+    }
+    &:hover,
+    &:focus {
+      border-color: $primary;
+      box-shadow: none;
+    }
+  }
+
+  // select 클릭 후
+  & > .css-t3ipsp-control {
+    box-shadow: none;
+    &:hover,
+    &:focus {
+      border-color: $primary;
+      box-shadow: none;
+    }
+    & .css-hlgwow {
+      padding: 4px 6px;
+    }
+  }
+
+  // select option
+  & > .css-1nmdiq5-menu {
+    margin: 1px 0 0;
+    box-sizing: unset;
+    border: 1px solid $border;
+    box-shadow: unset;
+    background-color: $bg;
+    z-index: 2;
+    & .css-qr46ko {
+      max-height: 117px;
+      @include flexbox($wrap: wrap);
+      padding: 6px 0;
+      & > div[class*='-option'] {
+        -webkit-tap-highlight-color: unset;
+        padding: 0 6px;
+        background-color: $bg;
+        color: $text-01;
+        &:hover {
+          background-color: $primary-focus;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+// button
+button {
+  width: auto;
+  padding: 4px 6px;
+  color: $white;
+  background-color: $gray;
+  border: 1px solid $gray;
+  @include overflow(both, hidden);
+  border-radius: 4px;
+  position: relative;
+  & > i {
+    font-style: normal;
+  }
+  // icon btn
+  &.icon-btn {
+    padding: 4px;
+    background-color: transparent;
+    border: none;
+    &.arr {
+      @include svg-size(26px, 26px);
+      padding: 6px;
+      @include bg-img(
+        $url: --bg-img-white,
+        $size: 454px auto,
+        $position: -146px -7px
+      );
+      background-color: $gray;
+      border: 1px solid $gray;
+      &.sec {
+        background-color: $secondary;
+        border-color: $secondary;
+      }
+      &.err {
+        background-color: $error;
+        border-color: $error;
+      }
+      &.warn {
+        background-color: $warning;
+        border-color: $warning;
+      }
+      &.pri {
+        background-color: $primary;
+        border-color: $primary;
+      }
+    }
+  }
+
+  // border color btn
+  &.bdc {
+    background-color: $bg $imt;
+    &.sec {
+      color: $secondary;
+    }
+    &.err {
+      color: $error;
+    }
+    &.warn {
+      color: $warning;
+    }
+    &.pri {
+      color: $primary;
+    }
+    &.gray {
+      color: $text-01;
+      border-color: $gray;
+    }
+    &:focus > span {
+      background-color: $btn-focus01;
+    }
+  }
+
+  // full color btn
+  &.sec {
+    background-color: $secondary;
+    border-color: $secondary;
+  }
+  &.err {
+    background-color: $error;
+    border-color: $error;
+  }
+  &.warn {
+    background-color: $warning;
+    border-color: $warning;
+  }
+  &.pri {
+    background-color: $primary;
+    border-color: $primary;
+  }
+
+  & > span {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all, 0.5s;
+    @include svg-size(30px, 30px);
+    @include borderRadius();
+  }
+  &:focus > span {
+    background-color: $btn-focus;
+  }
+
+  // size
+  &.sm {
+    @include fontsize(sm);
+  }
+  &.lg {
+    @include fontsize(md);
+    &:focus > span {
+      @include svg-size(36px, 36px);
+    }
+  }
+}

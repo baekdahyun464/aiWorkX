@@ -1,0 +1,160 @@
+.handler-wrap {
+  @include width();
+  background: $bg;
+  border: 1px solid $border;
+  border-radius: 4px;
+  .handler-head {
+    background-color: $btn-focus01;
+    @include flexbox($j-content: space-between);
+    padding: 4px 30px 4px 13px;
+    border-bottom: 1px solid $line;
+    position: relative;
+    &::after {
+      content: '';
+      display: inline-block;
+      @include svg-size(18px, 18px);
+      @include bg-img(
+        $url: --bg-img-op,
+        $size: 594px auto,
+        $position: -198px -15px
+      );
+      position: absolute;
+      right: 8px;
+      top: 4px;
+    }
+    & p {
+      @include fontweight(700);
+      line-height: 20px;
+      color: $text;
+    }
+  }
+  & figure {
+    width: 100%;
+    padding: 11px 9px 10px;
+    @include flexbox($al-items: center, $j-content: space-between, $gap: 4px);
+    & figcaption {
+      // left - progress-circle
+
+      // right
+      &:nth-of-type(2) {
+        @include flexbox($wrap: wrap, $j-content: flex-end);
+
+        & ul.status-color {
+          @include flexbox($al-items: center, $gap: 8px);
+          margin-bottom: 3px;
+          & li {
+            font-size: 8px;
+            line-height: 10px;
+            &::before {
+              content: '';
+              display: inline-block;
+              @include svg-size(6px, 6px);
+              @include borderRadius();
+              margin-right: 2px;
+            }
+            &:nth-of-type(1) {
+              color: $text;
+              &::before {
+                background-color: $text;
+              }
+            }
+            &:nth-of-type(2) {
+              color: $success;
+              &::before {
+                background-color: $success;
+              }
+            }
+            &:nth-of-type(3) {
+              color: $warning;
+              &::before {
+                background-color: $warning;
+              }
+            }
+            &:nth-of-type(4) {
+              color: $gray;
+              &::before {
+                background-color: $gray;
+              }
+            }
+          }
+        }
+
+        & ul.dut-wrap {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 4px;
+          & li {
+            border: 1px solid;
+            @include borderRadius(4px);
+            padding: 3px 6px;
+            &.testing {
+              border-color: $accent;
+            }
+            &.ready {
+              border-color: $orange;
+            }
+            &.running {
+              border-color: $line;
+            }
+            & p:first-child {
+              color: $text;
+              font-size: 8px;
+              border-bottom: 1px solid $line;
+            }
+            & p.dut-num {
+              margin-top: 3px;
+              @include flexbox($j-content: space-between);
+              & b {
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 14px;
+                color: $text;
+                &::after {
+                  content: '%';
+                  display: inline-block;
+                  font-size: 8px;
+                  color: $text-01;
+                }
+              }
+              & span {
+                @include flexbox($gap: 4px);
+                & i {
+                  font-weight: 400;
+                  font-size: 12px;
+                  line-height: 14px;
+                  font-style: normal;
+                  &:nth-of-type(1) {
+                    color: $success;
+                  }
+                  &:nth-of-type(2) {
+                    color: $warning;
+                  }
+                  &:nth-of-type(3) {
+                    color: $gray;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // Goal chip count
+      & > p.goal-count {
+        font-size: 8px;
+        font-weight: 700;
+        color: $disabled-text;
+        text-align: center;
+        & > span {
+          font-size: 14px;
+          line-height: 1;
+          font-weight: 700;
+          color: rgba(0, 92, 184, 0.3);
+          margin-left: 6px;
+          vertical-align: sub;
+        }
+      }
+    }
+  }
+}

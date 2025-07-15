@@ -1,0 +1,367 @@
+// width, height
+@mixin width($width: 100%) {
+  width: $width;
+  @content;
+}
+
+@mixin height($height: 100%) {
+  height: $height;
+  @content;
+}
+
+// width + height
+@mixin item-size($width, $height) {
+  width: $width;
+  height: $height;
+  @content;
+}
+
+// align
+@mixin align($type, $offset) {
+  @if ($type == 'text') {
+    text-align: $offset !important;
+  } @else if($type == 'valign') {
+    vertical-align: $offset !important;
+  }
+  @content;
+}
+
+//display
+@mixin display($type) {
+  display: $type;
+  @content;
+}
+
+//flexbox
+@mixin flexbox(
+  $direction: row,
+  $wrap: nowrap,
+  $j-content: flex-start,
+  $al-items: stretch,
+  $gap: unset
+) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $j-content;
+  align-items: $al-items;
+  gap: $gap;
+  @content;
+}
+//basis까지 설정 할 경우
+@mixin flex($grow: 0, $shrink: 1, $basis: 0) {
+  flex: $grow $shrink $basis;
+  @content;
+  // flex-basis 기본값은 'auto'이지만 단축 속성인 flex에서 그 값을 생략할 경우 0이 적용
+  //(flex: 1 = flex: 1 1 0)
+}
+//basis 설정 안 할 경우
+@mixin flexgrow($grow: 0, $shrink: 1) {
+  flex-grow: $grow;
+  flex-shrink: $shrink;
+  @content;
+}
+
+@mixin gridbox($j-items: start, $al-items: stretch, $al-con: stretch) {
+  display: grid;
+  justify-items: $j-items;
+  align-items: $al-items;
+  align-content: $al-con;
+}
+
+// typography
+@mixin typography($fontsize: 14px, $lineHeight: 1.5, $fontweight: 400) {
+  font-size: $fontsize;
+  line-height: $lineHeight;
+  font-weight: $fontweight;
+  @content;
+}
+
+// font
+@mixin webfont($fontName, $fontweight) {
+  font : {
+    family: $fontName;
+    weight: $fontweight;
+  }
+  @content;
+}
+
+//font-size
+@mixin fontsize($size) {
+  @if ($size== 'sm') {
+    // 위에서부터 아래로 커짐
+    font-size: 11px;
+  } @else if($size== 'txt') {
+    font-size: 14px; // default
+  } @else if($size== 'md') {
+    font-size: 18px;
+  } @else if($size== 'lg') {
+    font-size: 20px;
+  } @else if($size== 'h6') {
+    font-size: 24px;
+  } @else if($size== 'h5') {
+    font-size: 32px;
+  } @else if($size== 'h4') {
+    font-size: 36px;
+  } @else if($size== 'h3') {
+    font-size: 40px;
+  } @else if($size== 'h2') {
+    font-size: 48px;
+  } @else if($size== 'h1') {
+    font-size: 64px;
+  } @else {
+    font-size: $size;
+  }
+  @content;
+}
+
+@mixin txtover {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin fontweight($weight) {
+  @if ($weight == 400) {
+    font-weight: 400;
+  } @else if($weight == 700) {
+    font-weight: 700;
+  } @else if($weight == 800) {
+    font-weight: 800;
+  }
+}
+
+@mixin bg-img(
+  $url: --bg-img,
+  $size: 773px 98px,
+  $position: center,
+  $repeat: no-repeat
+) {
+  background-image: var(#{$url});
+  background-size: $size;
+  background-position: $position;
+  background-repeat: $repeat;
+}
+
+// dark , light mord
+// @mixin mode($theme: 'light') {
+//   background-image: var(--bg-img) $imt;
+//   @if ($theme== 'dark') {
+//     background-image: var(--bg-img) $imt;
+//   }
+// }
+
+//border-radius
+@mixin borderRadius($size: 30px) {
+  border-radius: $size;
+  @content;
+}
+
+// overflow
+@mixin overflow($offset, $overflow) {
+  @if ($offset== x) {
+    overflow-x: $overflow;
+  } @else if ($offset== y) {
+    overflow-y: $overflow;
+  } @else if ($offset== both) {
+    overflow: $overflow;
+  }
+  @content;
+}
+
+// svg Icon
+$default-width: 24px;
+$default-height: 24px;
+// size mixin
+@mixin svg-size($width: $default-width, $height: $default-height) {
+  width: $width;
+  height: $height;
+  @content;
+}
+// color mixin
+@mixin svg-color($fill: $default-fill) {
+  fill: $fill;
+  & path {
+    fill: $fill;
+    fill-opacity: 1;
+  }
+  @content;
+}
+.svg-icon {
+  width: $default-width;
+  height: $default-height;
+  // class
+  &.size-auto {
+    @include svg-size(auto, auto);
+  }
+  &.size-small {
+    @include svg-size(24px, 24px);
+  }
+  &.size-large {
+    @include svg-size(150px, 150px);
+  }
+}
+//Background-image Design Icon mixin List
+//Checkbox
+@mixin ico-check-off($theme: 'light') {
+  @include item-size(70px, 70px);
+  position: relative;
+  line-height: 1;
+  display: flex;
+  &:before {
+    content: '';
+    @include item-size(70px, 70px);
+    @if ($theme== 'dark') {
+      background-image: url('/ico_check_off_dark.svg');
+    } @else {
+      background-image: url('/ico_check_off.svg');
+    }
+    background-color: transparent;
+    background-position: 0 center;
+    background-repeat: no-repeat;
+    background-size: 70px auto;
+  }
+}
+@mixin ico-check-on($theme: 'light') {
+  position: relative;
+  &:before {
+    @if ($theme== 'dark') {
+      background-image: url('/ico_check_on_dark.svg');
+    } @else {
+      background-image: url('/ico_check_on.svg');
+    }
+  }
+}
+//Radio
+@mixin ico-radio-off($theme: 'light') {
+  @include item-size(70px, 70px);
+  position: relative;
+  line-height: 1;
+  display: flex;
+  &:before {
+    content: '';
+    @include item-size(70px, 70px);
+    @if ($theme== 'dark') {
+      background-image: url('/ico_radio_off_dark.svg');
+    } @else {
+      background-image: url('/ico_radio_off.svg');
+    }
+    background-color: transparent;
+    background-position: 0 center;
+    background-repeat: no-repeat;
+    background-size: 70px auto;
+  }
+}
+@mixin ico-radio-on($theme: 'light') {
+  position: relative;
+  &:before {
+    @if ($theme== 'dark') {
+      background-image: url('/ico_radio_on_dark.svg');
+    } @else {
+      background-image: url('/ico_radio_on.svg');
+    }
+  }
+}
+//Quantity input
+@mixin ico-q-plus($theme: 'light', $type: 'n') {
+  @include item-size(70px, 70px);
+  position: relative;
+  line-height: 1;
+  display: flex;
+  &:before {
+    content: '';
+    @include item-size(70px, 70px);
+    @if ($type== 'n') {
+      @if ($theme== 'dark') {
+        background-image: url('/btn_plus_n_dark.svg');
+      } @else {
+        background-image: url('/btn_plus_n.svg');
+      }
+    } @else if($type== 'p') {
+      @if ($theme== 'dark') {
+        background-image: url('/btn_plus_p_dark.svg');
+      } @else {
+        background-image: url('/btn_plus_p.svg');
+      }
+    } @else if($type== 'f') {
+      @if ($theme== 'dark') {
+        background-image: url('/btn_plus_f_dark.svg');
+      } @else {
+        background-image: url('/btn_plus_f.svg');
+      }
+    } @else if($type== 'fp') {
+      @if ($theme== 'dark') {
+        background-image: url('/btn_plus_fp_dark.svg');
+      } @else {
+        background-image: url('/btn_plus_fp.svg');
+      }
+    } @else if($type== 'd') {
+      @if ($theme== 'dark') {
+        background-image: url('/btn_plus_d_dark.svg');
+      } @else {
+        background-image: url('/btn_plus_d.svg');
+      }
+    }
+    background-color: transparent;
+    background-position: 0 center;
+    background-repeat: no-repeat;
+    background-size: 70px auto;
+  }
+}
+@mixin ico-q-minus($theme: 'light', $type: 'n') {
+  @include item-size(70px, 70px);
+  position: relative;
+  line-height: 1;
+  display: flex;
+  &:before {
+    content: '';
+    @include item-size(70px, 70px);
+    @if ($type== 'n') {
+      @if ($theme== 'dark') {
+        background-image: url('/btn_minus_n_dark.svg');
+      } @else {
+        background-image: url('/btn_minus_n.svg');
+      }
+    } @else if($type== 'p') {
+      @if ($theme== 'dark') {
+        background-image: url('/btn_minus_p_dark.svg');
+      } @else {
+        background-image: url('/btn_minus_p.svg');
+      }
+    } @else if($type== 'f') {
+      @if ($theme== 'dark') {
+        background-image: url('/btn_minus_f_dark.svg');
+      } @else {
+        background-image: url('/btn_minus_f.svg');
+      }
+    } @else if($type== 'fp') {
+      @if ($theme== 'dark') {
+        background-image: url('/btn_minus_fp_dark.svg');
+      } @else {
+        background-image: url('/btn_minus_fp.svg');
+      }
+    } @else if($type== 'd') {
+      @if ($theme== 'dark') {
+        background-image: url('/btn_minus_d_dark.svg');
+      } @else {
+        background-image: url('/btn_minus_d.svg');
+      }
+    }
+    background-color: transparent;
+    background-position: 0 center;
+    background-repeat: no-repeat;
+    background-size: 70px auto;
+  }
+}
+@mixin responsive($breakpoint) {
+  @if $breakpoint == md {
+    @media (min-width: 1240px) {
+      @content;
+    }
+  } @else if $breakpoint == sm {
+    @media (max-width: 1239px) {
+      @content;
+    }
+  }
+}

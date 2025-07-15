@@ -1,0 +1,70 @@
+.progress-bar {
+  height: 8px;
+  position: relative;
+  @include borderRadius();
+  @include overflow(both, hidden);
+  background-color: $gray;
+  & .percent {
+    @include display(inline-block);
+    height: 8px;
+    @include borderRadius();
+    background-color: $success;
+    transition: width 1s ease;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+.progress-circle {
+  display: inline-block;
+
+  svg {
+    transform: rotate(180deg);
+  }
+
+  .bg {
+    fill: none;
+    stroke: rgba(0, 92, 184, 0.3);
+  }
+
+  .ring {
+    fill: none;
+    stroke: $primary;
+    transition: all 1s ease-in-out;
+    stroke-linecap: round;
+  }
+
+  .text {
+    font-size: 1rem;
+    fill: #333;
+    font-weight: bold;
+    position: absolute;
+    transform: rotate(180deg) translate(-50%, -50%);
+  }
+}
+
+.progress-circle {
+  position: relative;
+  & .current-num {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    & span {
+      display: block;
+      @include align(text, center);
+      &:first-child {
+        @include fontweight(400);
+        font-size: 8px;
+        color: $text-01;
+        white-space: nowrap;
+      }
+      &:last-child {
+        @include fontweight(700);
+        @include fontsize(h5);
+        line-height: 38px;
+        color: $primary;
+      }
+    }
+  }
+}
