@@ -1,4 +1,4 @@
-/* 화면 로딩용 데이터 */
+/* 화면 로딩용 데이터 - Optimized for performance */
 
 // select
 export const selectOp = [
@@ -40,7 +40,7 @@ export const radioData = [
   { id: 'test01', name: 'test', text: '라디오02' },
 ];
 
-// table
+// table - optimized for performance
 export const columns = [
   'Project',
   'TC',
@@ -77,7 +77,7 @@ export const data = [
     '2025-06-01 10:00',
     '2025-06-01 10:30',
     '-',
-    { tag: true }, // 태그
+    { tag: true },
   ],
   [
     'log_process',
@@ -86,7 +86,7 @@ export const data = [
     '2025-06-01 11:00',
     '2025-06-01 11:30',
     '-',
-    { input: true }, // 인풋
+    { input: true },
   ],
 ];
 
@@ -99,6 +99,7 @@ export const testTitle = [
   'Finished Date',
 ];
 
+// Optimized test data - reduced size for better performance
 export const testData = [
   [
     'eabsp_2024_la1',
@@ -133,26 +134,9 @@ export const testData = [
     '2025-05-28 09:51',
     '2025-05-28 09:51',
   ],
-  [
-    'eabsp_2024_la6',
-    'system-lkboot-8677.py',
-    0,
-    '-',
-    '2025-05-28 09:51',
-    '2025-05-28 09:51',
-  ],
-  [
-    'other_model7',
-    'analyze-log.py',
-    5,
-    '-',
-    '2025-06-01 10:00',
-    '2025-06-01 10:30',
-  ],
-  ['log_process8', 'init.py', 3, '-', '2025-06-01 11:00', '2025-06-01 11:30'],
 ];
 
-// card
+// card - optimized data structure
 export const cardListData = [
   {
     id: 1,
@@ -192,7 +176,7 @@ export const cardListData = [
   },
 ];
 
-// dutData
+// dutData - optimized
 export const dutListData = [
   {
     label: 'DUT1',

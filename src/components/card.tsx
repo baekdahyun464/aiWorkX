@@ -1,38 +1,41 @@
-import CountUp from 'react-countup';
-import ProgressBar from './progress';
+import { memo } from 'react';
 import './card.scss';
 
-interface CardData {
-  id: number;
-  tested: number;
-  goal: number;
-}
-
 interface CardProps {
-  data: CardData;
+  data: {
+    id: number;
+    tested: number;
+    goal: number;
+    isStatus: boolean;
+  };
 }
 
-export default function Card({ data }: CardProps) {
-  const { id, tested, goal } = data;
+const Card = memo(function Card({ data }: CardProps) {
+  const { tested, goal, isStatus } = data;
+  const percentage = Math.round((tested / goal) * 100);
 
   return (
-    <>
-      <li>
-        <a href="#" className="id-link">
-          <p>handler ID:{id}</p>
-          <figure>
-            <figcaption>
-              <CountUp end={tested} duration={1} separator="," />
-              <span>{goal}</span>
-            </figcaption>
-            <ProgressBar current={tested} />
-          </figure>
-          <div>
-            <p>Tested chip count</p>
-            <p>Goal chip count</p>
-          </div>
-        </a>
-      </li>
-    </>
+    <div className={`card ${isStatus ? 'active' : ''}`}>
+      <div className="card-header">
+        <h3>Test Progress</h3>
+        <span className="status">{isStatus ? 'Active' : 'Inactive'}</span>
+      </div>
+      <div className="card-content">
+        <div className="progress-info">
+          <span className="tested">{tested}</span>
+          <span className="separator">/</span>
+          <span className="goal">{goal}</span>
+        </div>
+        <div className="progress-bar">
+          <div
+            className="progress-fill"
+            style={{ width: `${percentage}%` }}
+          ></div>
+        </div>
+        <span className="percentage">{percentage}%</span>
+      </div>
+    </div>
   );
-}
+});
+
+export default Card;

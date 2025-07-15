@@ -1,12 +1,14 @@
-interface TestProps {
-  data: (string | number)[][];
-}
+import { memo } from 'react';
 import './test-card.scss';
 
 import { testTitle } from '../testLoading.ts';
 import Button from './button.tsx';
 
-export default function TestCard({ data }: TestProps) {
+interface TestProps {
+  data: (string | number)[][];
+}
+
+const TestCard = memo(function TestCard({ data }: TestProps) {
   return (
     <div className="bg-box">
       <h4 className="sub-title">Test History</h4>
@@ -35,4 +37,6 @@ export default function TestCard({ data }: TestProps) {
       </ul>
     </div>
   );
-}
+});
+
+export default TestCard;

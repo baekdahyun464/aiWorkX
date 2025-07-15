@@ -1,48 +1,16 @@
-import Badge from '@/components/badge';
 import Button from '@/components/button';
 import Checkbox from '@/components/checkbox';
 import Input from '@/components/input';
 import CardPaging from '@/components/card-paging';
 import Radio from '@/components/radio';
 import CustomSelect from '@/components/select';
-import Table from '@/components/table';
-import { selectOp, columns, data as rawData, testData } from '@/testLoading'; // 화면 로딩용 데이터
+import { selectOp, testData } from '@/testLoading'; // 화면 로딩용 데이터
 
 import Banner from '@/components/layout/swiper.tsx';
 import Accordion from '@/components/layout/accordion';
 import ToggleBtn from '@/components/toggle-btn';
 import Tag from '@/components/tag';
 import TestCard from '@/components/test-card';
-const accData = [
-  {
-    id: 'q1',
-    title: 'title1',
-    content: <p>content1</p>,
-  },
-  {
-    id: 'q2',
-    title: 'title2',
-    content: <p>content2</p>,
-  },
-  {
-    id: 'q3',
-    title: 'title3',
-    content: <p>content3</p>,
-  },
-];
-
-// === 테이블 내부 요소
-/*const renderCell = (cell: any) => {
-  if (typeof cell === 'object') {
-    if (cell.btn) return <Button>버튼</Button>;
-    if (cell.tag) return <Badge>태그</Badge>;
-    if (cell.input) return <Input placeHolder="입력" />;
-  }
-  return cell;
-};
-// 데이터 변환
-const data = rawData.map(row => row.map(cell => renderCell(cell)));
-// === 테이블 내부 요소 */
 
 export default function DashboardPage() {
   return (
@@ -98,11 +66,6 @@ export default function DashboardPage() {
       </div>
       <Banner />
       <CardPaging />
-      {/* <Paging /> */}
-      {/* <div className="ag-theme-alpine" style={{ height: '500px' }}>
-        <GridExample />
-      </div> */}
-      {/* <Table col={columns} data={data} /> */}
       <TestCard data={testData} />
       <Accordion
         id={['acc-01', 'acc-02']}
